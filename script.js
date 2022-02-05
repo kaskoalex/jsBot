@@ -12,88 +12,67 @@ const numberRandom = function (max) {
 }
 
 
-
-const userNumber = function () {
-  let number
-  do {
-    number = prompt(" Введи число.")
-    if (!isNumber(number) === false)
-      return number
-    if (number === null) {
-      alert("Игра окончена!")
-      break
-    }
-  }
-  while (!isNumber(number))
-
-
-}
-
-
-
-const userTry = function () {
-  if (flag<1) {
-    let request
-    request = prompt("Попытки закончились, хотите сыграть еще?", "Да или Нет");
-    if (request == "Да") {
-      
-      flag = 10;
-      return gameBot();
-    }   
-
-  } else if (flag>=1) {
-    gameInside()
-  }
-
-}
-
 const gameBot = function () { 
-  numberRandom(); 
-  alert("Угадай число от 1 до 100.");
-  gameInside()
-  
-}  
-
-function gameInside(){
-  
-  
+  numberRandom();
   let numberrandom = numberRandom();
-  console.log(numberrandom);
-  let usernumber = userNumber();
+  alert("Угадай число от 1 до 100.");
   
-  if (usernumber === null) {
-    alert("Игра окончена!");
+  const start = function (){
+    
+    
+    let number
+    do {
+      number = prompt(" Введи число.")
+      if (!isNumber(number) === false)
+        
 
-  } else if (usernumber == numberrandom) {
-    let request
-    request = prompt("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?", "Да или Нет");
-    if (request === "Да") {
-      gameBot();
-    } else if (request !== "Да"); { 
-      alert("Игра окончена!");
-      
+
+      if (number === null) {
+        alert("Игра окончена!")
+        break
+      }
     }
 
+    while (!isNumber(number))    
 
-  } else if (usernumber > numberrandom) {
-    flag--
-    alert("Загаданное число меньше. Попробуй еще! Количество попыток: ", flag);
-    userTry();
+      if (number == numberrandom) {
+      let request
+      request = prompt("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?", "Да или Нет");
+      if (request === "Да") {
+        
+        gameBot();
+      } else if (request !== "Да"); { 
+        alert("Игра окончена!");
+        
+      }
     
-  } else if (usernumber < numberrandom) {
-    flag--
-    alert("Загаданное число больше. Попробуй еще! Количество попыток: " + flag);
-    userTry();
+    } else if (flag <= 1) {
+      let request
+      request = confirm("Попытки закончились, хотите сыграть еще?", "Да или Нет");
+      if (request !== false) {
+
+        flag = 10;                     
+        gameBot();
+      } 
+
+
+    } else if (number > numberrandom) {
+      flag--
+      number=alert("Загаданное число меньше. Попробуй еще! Количество попыток: "+ flag);
+      start()
+      
+      
+    } else if (number < numberrandom) {
+      flag--
+      number=alert("Загаданное число больше. Попробуй еще! Количество попыток: "+ flag);
+      start()   
+    } 
     
   }
-  
-
+start() 
 }  
+
 
 gameBot()
-
-
-
-
 
 
